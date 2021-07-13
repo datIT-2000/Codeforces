@@ -12,18 +12,15 @@ c
 
 
 Chương trình 1: C++
+
 #include <bits/stdc++.h>
- 
 using namespace std;
 typedef long long LL;
- 
 #define maxn 200000 + 10
 #define oo 1000000000
- 
 char s[maxn];
 int n,s1[maxn],s2[maxn];
 int m = 1,dl[maxn];
- 
 int find( int k )
 {
     int l = 1,r = m,mid;
@@ -35,12 +32,10 @@ int find( int k )
             else r = mid;
         }
     return dl[l];
-}
- 
+} 
 int main()
 {
     int i,j,ans1 = 0,ans2 = 0;
-    
     scanf("%s",s+1);
     n = strlen(s+1);
     dl[1] = 0;
@@ -51,7 +46,6 @@ int main()
             if( s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U' )
                 ++s1[i];
             else ++s2[i];
-            
             if( s1[i]-2*s2[i] > s1[dl[m]]-2*s2[dl[m]] )
                 dl[++m] = i;
             j = find(s1[i]-2*s2[i]);
@@ -63,6 +57,5 @@ int main()
     if( ans1 )
         printf("%d %d\n",ans1,ans2);
     else printf("No solution\n");
-    
     return 0;
 }
