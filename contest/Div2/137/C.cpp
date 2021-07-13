@@ -55,16 +55,18 @@ int main()
 {
 	setIO();
 	srand(time(NULL));
-	string s;
-	re(s);
-	int ans = 0;
-	for(int i=0;i<s.size();++i){
-		int j = i+1;
-		while(j<min(i+5,int(s.size())) && s[j]==s[i]){
-			j++;
-		}
-		i = j-1;
-		ans++;
+	int n;
+	re(n);
+	vector<pair<int,int>> a(n);
+	for(auto &i:a){
+		re(i.ff,i.ss);
+	}
+	sort(all(a));
+	int ans=0,mx=a[0].ss;
+	for(int i=1;i<a.size();++i){
+		if(a[i].ss<=mx)
+			ans++;
+		mx = max(mx,a[i].ss);
 	}
 	cout << ans;
 	return 0;

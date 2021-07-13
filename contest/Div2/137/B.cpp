@@ -55,19 +55,20 @@ int main()
 {
 	setIO();
 	srand(time(NULL));
-	string s;
-	re(s);
-	int ans = 0;
-	for(int i=0;i<s.size();++i){
-		int j = i+1;
-		while(j<min(i+5,int(s.size())) && s[j]==s[i]){
-			j++;
+	int n, ans=0,tmp=0;
+	re(n);
+	vector<int> a(n);
+	re(a);
+	map<int,int> mp;
+	for(auto i:a) mp[i]++;
+	for(int i=1;i<=n;++i){
+		if(mp[i]==0)ans++;
+		else{
+			tmp=mp[i]-1;
 		}
-		i = j-1;
-		ans++;
 	}
-	cout << ans;
-	return 0;
+	cout << max(ans,tmp) << '\n';
+ 	return 0;
 }
 
 
