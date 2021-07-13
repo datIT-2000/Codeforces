@@ -53,23 +53,9 @@ constexpr int mod = 1e9+7;
 
 void solution()
 {
-	string s;
-	re(s);
-	if(s[0]==')' || s[s.size()-1]=='(' || s.size()&1){
-		cout << "NO\n";
-		return ;
-	}
-	int m=0, d=0, h=0;
-	for(auto i:s){
-		if(i=='(') m++;
-		else if(i=='?') h++;
-		else{
-			if(m)m--;
-			else if(h)h--;
-			else {cout << "NO\n"; return ;}
-		}
-	}
-	cout << "YES\n";
+	int n;
+	re(n);
+	for(int i=2)
 }
 
 int main()

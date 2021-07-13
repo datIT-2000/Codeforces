@@ -53,23 +53,24 @@ constexpr int mod = 1e9+7;
 
 void solution()
 {
-	string s;
-	re(s);
-	if(s[0]==')' || s[s.size()-1]=='(' || s.size()&1){
-		cout << "NO\n";
-		return ;
-	}
-	int m=0, d=0, h=0;
-	for(auto i:s){
-		if(i=='(') m++;
-		else if(i=='?') h++;
-		else{
-			if(m)m--;
-			else if(h)h--;
-			else {cout << "NO\n"; return ;}
+	ll n,k,x;
+	re(n);
+	re(k);
+	x = k-1;
+	vector<ll> a(n);
+	for(ll &i:a) re(i);
+	int mn[n]{}, mx[n]{};
+	mn[0]=a[0];
+	mx[0]=a[0]+k;
+	for(int i=1;i<n-1;++i){
+		if(a[i]>=mx[i-1] || a[i]+x+k<=a[i-1]){
+			cout << "NO\n";
+			return;
 		}
+		mx[i] = a[i]+x+k;
 	}
-	cout << "YES\n";
+	if(a[n-1]+k<=a[n-2] || a[n-1]>= mx[n-2]) cout<<"NO\n";
+	else cout << "YES\n";
 }
 
 int main()

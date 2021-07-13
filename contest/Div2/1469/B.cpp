@@ -53,23 +53,20 @@ constexpr int mod = 1e9+7;
 
 void solution()
 {
-	string s;
-	re(s);
-	if(s[0]==')' || s[s.size()-1]=='(' || s.size()&1){
-		cout << "NO\n";
-		return ;
-	}
-	int m=0, d=0, h=0;
-	for(auto i:s){
-		if(i=='(') m++;
-		else if(i=='?') h++;
-		else{
-			if(m)m--;
-			else if(h)h--;
-			else {cout << "NO\n"; return ;}
-		}
-	}
-	cout << "YES\n";
+	int64_t n,m;
+	cin >> n;
+	vector<int64_t> r(n);
+	for(int64_t &i:r) cin >> i;
+	cin >> m;
+	vector<int64_t> b(m);
+	for(int64_t &i:b) cin >> i;
+	vector<int64_t> f1(n),f2(m);
+	f1[0]=r[0]; f2[0] = b[0];
+	for(int i=1;i<n;++i)
+		f1[i] = f1[i-1]+r[i];
+	for(int i=1;i<m;++i)
+		f2[i] = f2[i-1]+b[i];
+	cout << max(0LL,*max_element(all(f1))) + max(0LL,*max_element(all(f2))) << '\n';
 }
 
 int main()
@@ -77,7 +74,7 @@ int main()
 	setIO();
 	srand(time(NULL));
 	int t;
-	re(t);
+	cin >> t;
 	while(t--)
 		solution();
 	return 0;
