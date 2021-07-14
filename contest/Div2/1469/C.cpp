@@ -53,24 +53,23 @@ constexpr int mod = 1e9+7;
 
 void solution()
 {
-	ll n,k,x;
-	re(n);
-	re(k);
-	x = k-1;
-	vector<ll> a(n);
-	for(ll &i:a) re(i);
-	int mn[n]{}, mx[n]{};
-	mn[0]=a[0];
-	mx[0]=a[0]+k;
-	for(int i=1;i<n-1;++i){
-		if(a[i]>=mx[i-1] || a[i]+x+k<=a[i-1]){
-			cout << "NO\n";
-			return;
+	int n,k,h;
+	cin >> n >> k;
+	int l=0,r=0;
+	bool ok = true;
+	for(int i=0;i<n;++i){
+		cin >> h;
+		if (i == 0) {
+			l = r = h;
+		} else {
+			l = max(l - k + 1, h);
+			r = min(r + k - 1, h + k - 1);
 		}
-		mx[i] = a[i]+x+k;
+		if (l > r || (i == n - 1 && l != h)) {
+			ok = false;
+		}
 	}
-	if(a[n-1]+k<=a[n-2] || a[n-1]>= mx[n-2]) cout<<"NO\n";
-	else cout << "YES\n";
+	cout << (ok?"YES\n":"NO\n");
 }
 
 int main()
@@ -78,7 +77,7 @@ int main()
 	setIO();
 	srand(time(NULL));
 	int t;
-	re(t);
+	cin >> t;
 	while(t--)
 		solution();
 	return 0;
