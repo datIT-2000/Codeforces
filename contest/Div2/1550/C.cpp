@@ -1,10 +1,9 @@
 #include <bits/stdc++.h>
-#define ll uint64_t
 #define ff first
 #define ss second
 #define sz(x) x.size()
 #define pb(x) push_back(x)
-#define all(a) a.begin(),a.end()
+#define all(a) a.rbegin(),a.rend()
 #define setp(x) fixed << setprecision(x)
 
 using namespace std;
@@ -34,6 +33,9 @@ namespace input {
 }
 
 using namespace input;
+using ll = long long;
+using u64 = unsigned long long;
+using u32 = unsigned;
 
 namespace io
 {
@@ -51,9 +53,23 @@ using namespace io;
 
 constexpr int mod = 1e9+7;
 
+ll distance(pair<ll,ll> a, pair<ll,ll> b){
+	return abs(a.ff-b.ff)+abs(a.ss-b.ss);
+}
+
 void solution()
 {
-
+	int n,pos=1;
+	re(n);
+	vector<pair<ll,ll>> a(n);
+	for(auto &i:a){
+		re(i.ff);
+		i.ss=pos++;
+	}
+	sort(all(a));
+	if(n<3) {cout << n+1 << '\n'; return; }
+	ll res = distance(a[0],a[1])+ distance(a[0],a[2])+ distance(a[2],a[1]);
+	cout << res << '\n';
 }
 
 int main()
@@ -66,7 +82,6 @@ int main()
 		solution();
 	return 0;
 }
-
 
 
 

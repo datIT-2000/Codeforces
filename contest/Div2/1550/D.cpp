@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#define ll uint64_t
 #define ff first
 #define ss second
 #define sz(x) x.size()
@@ -34,6 +33,9 @@ namespace input {
 }
 
 using namespace input;
+using ll = long long;
+using u64 = unsigned long long;
+using u32 = unsigned;
 
 namespace io
 {
@@ -66,7 +68,6 @@ int main()
 		solution();
 	return 0;
 }
-
 
 
 

@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#define ll uint64_t
 #define ff first
 #define ss second
 #define sz(x) x.size()
@@ -34,6 +33,9 @@ namespace input {
 }
 
 using namespace input;
+using ll = long long;
+using u64 = unsigned long long;
+using u32 = unsigned;
 
 namespace io
 {
@@ -53,7 +55,34 @@ constexpr int mod = 1e9+7;
 
 void solution()
 {
-
+	int n,a,b,ans = 0, cur=0, x=0, y=0;
+	re(n); re(a); re(b);
+	string s;
+	re(s);
+	int v =0, p=0;
+	for(int i=0;i<n;++i){
+		if(s[i]=='1')x++;
+		else{
+			int j = i;
+			while(s[i]=='0')i++;
+			i--;
+			v+=(i-j+1)*a+b;
+		}
+	}
+	if(x) v+=a*x+b;
+	x=0; y=0;
+	for(int i=0;i<n;++i){
+		if(s[i]=='0')x++;
+		else{
+			int j = i;
+			while(s[i]=='1')i++;
+			i--;
+			p+=(i-j+1)*a+b;
+		}
+	}
+	if(x) p+=a*x+b;
+	ans = max({(a+b)*n, v, p});
+	cout << ans << '\n';
 }
 
 int main()
@@ -66,7 +95,6 @@ int main()
 		solution();
 	return 0;
 }
-
 
 
 
