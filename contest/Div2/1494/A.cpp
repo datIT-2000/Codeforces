@@ -55,25 +55,26 @@ constexpr int mod = 1e9+7;
 
 void solution()
 {
-	  bool ok = true;
-	  string s;
-	  cin >> s;
-	  vector<int> d(3);
-	  int x = s[0] - 'A';
-	  int y = s.back() - 'A';
-	  if (x == y)
-		ok = false;
-	  d[x] = 1; d[y] = -1;
-	  if (count(s.begin(), s.end(), 'A' + x) == s.length() / 2)
-		d[3 ^ x ^ y] = -1;
-	  else
-		d[3 ^ x ^ y] = 1;
-	  int bal = 0;
-	  for (char c : s) {
-		bal += d[c - 'A'];
-		if (bal < 0) ok = false;
-	  }
-	  cout << (ok && bal==0?"YES\n":"NO\n");
+	int ok = 1;
+	string s;
+	re(s);
+	vector<int> count_(3);
+	int x = s[0]-'A', y = s.back()-'A';
+	if(x==y) ok = 0;
+	count_[x] = 1;
+	count_[y] = -1;
+	if(count(all(s),'A'+x) == sz(s)/2){
+		count_[3^x^y] = -1;
+	}
+	else{
+		count_[3^x^y] = 1;
+	}
+	int cur = 0;
+	for(auto i:s){
+		cur+=count_[i-'A'];
+		if(cur<0)ok=0;
+	}
+	cout << (ok && cur==0?"YES\n":"NO\n");
 }
 
 int main()
