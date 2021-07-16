@@ -60,8 +60,7 @@ void solution()
 		ll ans=0;
 		for(ll i=1;i<=n;i++)re(a[i]);
 		for(ll i=1;i<=n;i++){
-			ll st = a[i]-i;
-			st = (st+a[i]*i)%a[i];
+			ll st = (a[i]-i)%a[i];
 			for(ll j=st;j<=n;j+=a[i]){
 				if(j <= i)continue;
 				if(a[i]*a[j]==i+j)ans++;
