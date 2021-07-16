@@ -55,14 +55,19 @@ constexpr int mod = 1e9+7;
 
 void solution()
 {
-	int n;
-	re(n);
-	vector<int> a(n+1);
-	for(int i=1;i<=n;++i)a[i]=i;
-	for(int i=1;i<n;i+=2)swap(a[i],a[i+1]);
-	if(n&1)swap(a[n],a[n-1]);
-	for(int i=1;i<=n;++i) cout << a[i] << ' ';
-	cout << '\n';
+		int n; re(n);
+		vector<ll> a(n+5);
+		ll ans=0;
+		for(ll i=1;i<=n;i++)re(a[i]);
+		for(ll i=1;i<=n;i++){
+			ll st = a[i]-i;
+			st = (st+a[i]*i)%a[i];
+			for(ll j=st;j<=n;j+=a[i]){
+				if(j <= i)continue;
+				if(a[i]*a[j]==i+j)ans++;
+			}
+		}
+		cout << ans << endl;
 }
 
 int main()
@@ -74,6 +79,7 @@ int main()
 		solution();
 	return 0;
 }
+
 
 
 
