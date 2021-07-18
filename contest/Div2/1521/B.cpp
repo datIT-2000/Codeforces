@@ -55,10 +55,20 @@ constexpr int mod = 1e9+7;
 
 void solution()
 {
-	ll a,b;
-	re(a,b);
-	if(b==1)cout << "NO\n";
-	else cout <<"YES\n"<< a*b-a << ' ' << a*b+a << ' ' << 2*a*b << '\n';
+	int n; cin >> n;
+	vector<int> a(n);
+	re(a);
+	vector<pair<pair<int,int>, pair<int,int>>> ans;
+	for(int i=1;i<n;i+=2){
+		int x = min(a[i],a[i-1]);
+		a[i-1]=x;
+		a[i]=mod;
+		ans.push_back({{i,i+1},{x,mod}});
+	}
+	cout << ans.size() << '\n';
+	for(auto i:ans){
+		cout << i.ff.ff << ' ' << i.ff.ss << ' ' << i.ss.ff << ' ' << i.ss.ss << '\n';
+	}
 }
 
 int main()
@@ -70,6 +80,7 @@ int main()
 		solution();
 	return 0;
 }
+
 
 
 
