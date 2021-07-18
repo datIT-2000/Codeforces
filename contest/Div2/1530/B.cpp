@@ -55,21 +55,42 @@ constexpr int mod = 1e9+7;
 
 void solution()
 {
-	string s;
-	cin >> s;
-	cout << *max_element(all(s)) << '\n';
+	int n,m;
+	cin >> n >> m;
+	int a[n+2][m+2]{};
+	for(int i=1;i<=n;++i){
+		for(int j=1;j<=m;++j){
+			if(i==1 || i==n || j==1 || j==m)
+				a[i][j]=1;
+		}
+	}
+	for(int i=1;i<=n;++i){
+		for(int j=1;j<=m;++j){
+			if(a[i][j]==1){
+				// (i−1,j) , (i,j−1), (i+1,j), (i,j+1), (i−1,j−1), (i−1,j+1), (i+1,j−1), (i+1,j+1).
+				a[i-1][j]=0; a[i][j-1]=0; a[i+1][j]=0; a[i][j+1]=0; a[i-1][j-1]=0; a[i-1][j+1]=0; a[i+1][j-1]=0; a[i+1][j+1]=0;
+			}
+		}
+	}
+	for(int i=1;i<=n;++i){
+		for(int j=1;j<=m;++j){
+			cout << a[i][j];
+		}
+		cout << '\n';
+	}
+	cout << '\n';
 }
 
 int main()
 {
 	setIO();
 	srand(time(NULL));
-	int t;
-	cin >> t;
+	int t; re(t);
 	while(t--)
 		solution();
 	return 0;
 }
+
 
 
 

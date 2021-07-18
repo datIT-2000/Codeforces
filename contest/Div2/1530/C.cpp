@@ -55,9 +55,26 @@ constexpr int mod = 1e9+7;
 
 void solution()
 {
-	string s;
-	cin >> s;
-	cout << *max_element(all(s)) << '\n';
+	int n; re(n);
+	vector<int> a(n), b(n), fA(n*2+5,0), fB(n+1,0);
+	re(a);
+	re(b);
+	sort(all(a));
+	sort(all(b),greater<int>());
+	for(int i=0;i<n;++i){
+		fA[i+1]=fA[i]+a[i];
+		fB[i+1]=fB[i]+b[i];
+	}
+	for(int x = n; x<=2*n;++x){
+		int k = x-x/4;
+		int A = fA[x]-fA[x-k];
+		int B = fB[min(n,k)];
+		if(A>=B){
+			cout << x-n << '\n';
+			break;
+		}
+		fA[x+1]=fA[x]+100;
+	}
 }
 
 int main()
@@ -65,7 +82,7 @@ int main()
 	setIO();
 	srand(time(NULL));
 	int t;
-	cin >> t;
+	re(t);
 	while(t--)
 		solution();
 	return 0;
