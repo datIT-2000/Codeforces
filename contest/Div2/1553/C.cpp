@@ -55,10 +55,30 @@ constexpr int mod = 1e9+7;
 
 void solution()
 {
-	int n; cin>> n;
-	int res = n/10;
-	res+=(n%10==9?1:0);
-	cout << res << '\n';
+	string s;
+	re(s);
+	int a=0, b=0,ca=0, cb=0, x=5, y=5;
+	for(int i=1;i<=10;++i){
+		(i&1?x--:y--);
+		if(s[i-1]=='1') (i&1?a++:b++);
+		else if(s[i-1]=='?'){
+			if(i&1) ca++;
+			else cb++;
+		}
+		if(a+ca>b){
+			if(y<ca+a-b){
+				cout << i << '\n';
+				return ;
+			}
+		}
+		if(a<b+cb){
+			if(x<cb+b-a){
+				cout << i << '\n';
+				return ;
+			}
+		}
+	}
+	cout << 10 << '\n';
 }
 
 int main()
@@ -71,6 +91,7 @@ int main()
 		solution();
 	return 0;
 }
+
 
 
 
